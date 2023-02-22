@@ -1,0 +1,84 @@
+<!--* Attribute directive block -->
+
+<p [ngStyle]="{ color: 'tomato', fontWeight: 'bolder' }">Elements List</p>
+
+<p ngClass="underlined">Looping for each element and show them</p>
+
+<p [ngClass]="['underlined', 'small']">Your list is empty</p>
+
+<p [ngClass]="{ underlined: false, small: true }">Create a element to start</p>
+
+<!--* Structural directive block -->
+
+<button (click)="loadingChange()">
+  {{ loading ? "Finish Loading" : "Init Loading" }}
+</button>
+
+<ng-container *ngIf="!loading; else waitTemplate">
+  <p>Ready!</p>
+</ng-container>
+<ng-template #waitTemplate>
+  <p>Loading...</p>
+  <p>Wait the final of the process</p>
+</ng-template>
+
+<!--* ngFor block -->
+<!-- Products Lists Iteration -->
+<div *ngFor="let product of elementsList; let i = index; let even = even">
+  <!-- FOR LOOP -->
+  <div
+    [ngStyle]="
+      even
+        ? { backgroundColor: 'blue', color: 'white' }
+        : { backgroundColor: 'green', color: 'white' }
+    "
+  >
+    <p>ID: {{ i + 1 }}</p>
+    <p>{{ product.name }} - {{ product.price }} PEN</p>
+    <p>{{ product.description }}</p>
+  </div>
+</div>
+
+<!--* ngSwitch BLOCK -->
+
+<div [ngSwitch]="option">
+  <p [id]="1" *ngSwitchCase="1">Option 1</p>
+  <p [id]="2" *ngSwitchCase="2">Option 2</p>
+  <p [id]="3" *ngSwitchCase="3">Option 3</p>
+  <p [id]="4" *ngSwitchCase="4">Option 4</p>
+  <p *ngSwitchDefault class="close"></p>
+</div>
+<!--* Option Selector -->
+<div>
+  <input type="radio" name="option" (click)="chooseOption(1)" /> You chose
+  Option 1 <input type="radio" name="option" (click)="chooseOption(2)" /> You
+  chose Option 2
+  <input type="radio" name="option" (click)="chooseOption(3)" /> You chose
+  Option 3 <input type="radio" name="option" (click)="chooseOption(4)" /> You
+  chose Option 4
+  <input
+    selected="selected"
+    type="radio"
+    name="option"
+    (click)="chooseOption(0)"
+  />
+  Hide
+</div>
+
+<!--* Join the directives -->
+
+<p>Products whose price is higher than 10</p>
+<div *ngFor="let product of elementsList; let i = index; let even = even">
+  <div
+    *ngIf="product.price > 10"
+    [ngStyle]="
+      even
+        ? { backgroundColor: 'blue', color: 'white' }
+        : { backgroundColor: 'green', color: 'white' }
+    "
+  >
+    <p>ID: {{ i + 1 }}</p>
+    <p>{{ product.name }} - {{ product.price }} PEN</p>
+    <p>{{ product.description }}</p>
+  </div>
+</div>

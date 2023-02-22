@@ -1,0 +1,21 @@
+<h1>¡Hello, {{ name }}!</h1>
+
+<h3 id="user" [innerText]="name">
+  <!-- Empty tag, value defined vy the property -->
+  {{ name }}
+</h3>
+
+<p [ngStyle]="{ color: 'orange' }">Hi, whats up?</p>
+
+<p [ngStyle]="myStyle">Bye guys</p>
+
+<button
+  [ngClass]="name === 'Anonymous' ? 'anonymous' : 'greeting'"
+  id="emit-alert"
+  (click)="sendMessage()"
+>
+  Hi message to the father component
+</button>
+
+<!-- Using BasicListComponent from module Lists -->
+<app-basic-list></app-basic-list>
